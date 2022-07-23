@@ -1,17 +1,22 @@
-import React from "react"
+import React, { useState } from "react";
+import StatControls from "./StatControls";
 
 export interface IStatsProps {
-    name: string
+  name: string;
 }
 
-const Characteristic: React.FC<IStatsProps> = (props) => {
-   const { name } = props
+const Stat: React.FC<IStatsProps> = (props) => {
+  const { name } = props;
+  const [max, setMax] = useState(4);
+  const [current, setCurrent] = useState(4);
+
   return (
     <div className="flex mb-2.5 items-center">
-        <label>{name}</label>
-        <input type="text"/>
+      <label className="text-xl mr-4">{name}</label>
+      <span className="text-xl mr-5 font-semibold">{current}/{max}</span>
+      <StatControls current={current} max={max} setCurrent={setCurrent}/>
     </div>
-  )
-}
+  );
+};
 
-export default Characteristic
+export default Stat;

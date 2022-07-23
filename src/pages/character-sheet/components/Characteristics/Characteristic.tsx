@@ -9,7 +9,7 @@ const Characteristic: React.FC<ICharacteristicProps> = (props) => {
     const { name } = props
   return (
     <div className="flex mb-2.5 items-center">
-        <div className="w-40 text-xl">{name}</div>
+        <div className="w-40 text-xl ">{name}</div>
         <CharacteristicLvlControls />
     </div>
   )

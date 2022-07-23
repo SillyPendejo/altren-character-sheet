@@ -56,7 +56,7 @@ const LvlControls: React.FC<ILvlControlsProps> = () => {
       >
         <Icon path={mdiMinusThick} size={0.8} color="black" />
       </div>
-      <div className="w-8 text-center text-xl">{lvl}</div>
+      <div className="w-8 text-center text-xl font-semibold">{lvl}</div>
       <div
         className="flex justify-center items-center w-8 h-8 mr-3 border-2 border-black rounded-md"
         onClick={handleLvlPlus}
