@@ -15,26 +15,31 @@ const Health: React.FC<IStatProps> = (props) => {
 
   const name = "Здоровье";
 
-  const statValueClassName = "inline-block text-center w-7";
-
+  
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    if (!+value && +value !== 0) return;
-    setModalInput(+value);
-  };
+      const { value } = event.target;
+      if (!+value && +value !== 0) return;
+      setModalInput(+value);
+    };
+    
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        handleOk();
+    };
+    
+    const handleOk = () => {
+        if (!modalInput) return;
+        setMax(modalInput);
+        if (current < 0 && modalInput < current * -1) {
+            setCurrent(modalInput * -1);
+        } else if (modalInput < current) {
+            setCurrent(modalInput);
+        }
+        setShowModal(false);
+    };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    handleOk();
-  };
-
-  const handleOk = () => {
-    if (!modalInput) return;
-    setMax(modalInput);
-    if (modalInput < current) setCurrent(modalInput);
-    setShowModal(false);
-  };
-
+    const statValueClassName = "inline-block text-center w-8";
+    
   return (
     <>
       <div className="relative flex mb-2.5 items-center gap-3">
@@ -43,7 +48,7 @@ const Health: React.FC<IStatProps> = (props) => {
           <span className={statValueClassName}>{current}</span>/
           <span className={statValueClassName}>{max}</span>
           <div
-            className="absolute bottom-4 left-14"
+            className="absolute bottom-4 left-16"
             onClick={() => setShowModal(true)}
           >
             <Icon path={mdiCog} size={0.7} color="grey" />
